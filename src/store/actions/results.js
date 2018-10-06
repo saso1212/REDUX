@@ -1,15 +1,18 @@
 import * as acttionTypes from './actionTypes';
 
 const SaveResult=(result)=>{
+    const updatedResult=result*2;
     return{
         type:acttionTypes.STORE,
-        res:result
+        res:updatedResult
     }
 }
 
 export const store=(result)=>{
-    return dispatch=>{
+    return (dispatch,getState)=>{
         setTimeout(()=>{
+            const oldCounter=getState().ctrReducer.counter;
+            console.log(oldCounter);
             dispatch(SaveResult(result))
         },2000);
     }
